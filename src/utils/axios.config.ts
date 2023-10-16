@@ -1,9 +1,10 @@
 import axios, {AxiosError} from 'axios'
 
-const api = axios.create({
-	baseURL: 'https://v0l40k21.github.io/moneycounter'
-	//  'http://localhost:3000'
-})
+const api = axios.create()
+// 	{
+// 	// baseURL: 'https://v0l40k21.github.io/moneycounter'
+// 	//  'http://localhost:3000'
+// })
 
 api.interceptors.request.use(req => {
 	console.info(`\n🚀 to ${req.url}\n`, req)
