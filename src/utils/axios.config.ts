@@ -1,10 +1,8 @@
 import axios, {AxiosError} from 'axios'
 
 const api = axios.create({
-	baseURL:
-		process.env.ENVIRONMENT === 'production'
-			? 'https://v0l40k21.github.io/moneycounter'
-			: 'http://localhost:3000'
+	baseURL: 'https://v0l40k21.github.io/moneycounter'
+	//  'http://localhost:3000'
 })
 
 api.interceptors.request.use(req => {
