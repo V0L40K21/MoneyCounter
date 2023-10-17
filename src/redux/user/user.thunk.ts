@@ -13,7 +13,7 @@ export const login = createAsyncThunk<
 	'user/login',
 	async (dto, {dispatch, rejectWithValue}) =>
 		await api
-			.post<TTokenRes>('https://v0l40k21.github.io/moneycounter/auth/signin', dto)
+			.post<TTokenRes>('/auth/signIn', dto)
 			.then(({data}) => data.access_token)
 			.catch(e => {
 				dispatch(setError(e))
