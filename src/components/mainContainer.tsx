@@ -1,14 +1,19 @@
 import {Alert, Snackbar} from '@mui/material'
 import {CSSProperties, FC, ReactElement, useEffect, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 
-import {useAppDispatch, useAppSelector} from '../redux/hooks'
 import {setError} from '../redux/app/app.slice'
+import {useAppDispatch, useAppSelector} from '../redux/hooks'
+import {clearUserState} from '../redux/user/user.slice'
+import MainMenu from './mainMenu'
 
 type TProps = {children: ReactElement}
 
 const MainContainer: FC<TProps> = ({children}) => {
 	const dispatch = useAppDispatch()
+	const navigate = useNavigate()
 	const {error} = useAppSelector(state => state.app)
+	const {token} = useAppSelector(state => state.user)
 	const [snakOpen, setSnackOpen] = useState(false)
 	const handleSnackClose = (
 		event: React.SyntheticEvent | Event,
@@ -23,10 +28,16 @@ const MainContainer: FC<TProps> = ({children}) => {
 	useEffect(() => {
 		if (error) {
 			setSnackOpen(true)
+			error.statusCode === 401 &&
+				setTimeout(() => {
+					dispatch(clearUserState())
+					navigate('/')
+				}, 3000)
 		}
-	}, [error])
+	}, [dispatch, error, navigate])
 	return (
 		<div style={styles.container}>
+			{token && <MainMenu />}
 			{children}
 			<img
 				src={require('../assets/coins.png')}
@@ -53,6 +64,7 @@ const MainContainer: FC<TProps> = ({children}) => {
 const styles: {[key: string]: CSSProperties} = {
 	container: {
 		display: 'flex',
+		flexDirection: 'column',
 		flex: 1,
 		height: '100vh',
 		width: '100vw',

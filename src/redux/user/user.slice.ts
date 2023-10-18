@@ -1,16 +1,16 @@
 import {AnyAction, createSlice} from '@reduxjs/toolkit'
 
-import {login} from './user.thunk'
-import {TError} from '../types'
+import {getProfile, login} from './user.thunk'
 
 interface IUserState {
 	token: string
+	email: string
 	loading: boolean
-	error?: TError
 }
 
 const initialState: IUserState = {
 	token: '',
+	email: '',
 	loading: false
 }
 
@@ -20,12 +20,19 @@ const isRejectedAction = (action: AnyAction) => action.type.endsWith('/rejected'
 const userSlice = createSlice({
 	name: 'user',
 	initialState,
-	reducers: {},
+	reducers: {
+		clearUserState: () => initialState
+	},
 	extraReducers: builder => {
 		builder
 			.addCase(login.fulfilled, (state, action) => ({
 				...state,
 				token: action.payload,
+				loading: false
+			}))
+			.addCase(getProfile.fulfilled, (state, action) => ({
+				...state,
+				email: action.payload,
 				loading: false
 			}))
 			.addMatcher(isPendingAction, state => ({
@@ -34,10 +41,10 @@ const userSlice = createSlice({
 			}))
 			.addMatcher(isRejectedAction, (state, action) => ({
 				...state,
-				error: action.payload,
 				loading: false
 			}))
 	}
 })
 
+export const {clearUserState} = userSlice.actions
 export default userSlice.reducer

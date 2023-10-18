@@ -1,22 +1,19 @@
-import {BrowserRouter, Navigate, Route, Routes} from 'react-router-dom'
+import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 import LoginPage from './login'
+import PaymentMethodsPage from './paymentMethods'
 
 const MainRouter = () => (
-	<BrowserRouter>
+	<BrowserRouter basename={'/moneycounter'}>
 		<Routes>
 			<Route
-				path={'/moneycounter'}
-				element={
-					<Navigate
-						replace
-						to={'/'}
-					/>
-				}
+				index
+				path={'/'}
+				element={<LoginPage />}
 			/>
 			<Route
-				path={'/'}
-				Component={LoginPage}
+				path={'/paymentMethods'}
+				element={<PaymentMethodsPage />}
 			/>
 		</Routes>
 	</BrowserRouter>

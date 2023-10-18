@@ -1,9 +1,9 @@
 import {createAsyncThunk} from '@reduxjs/toolkit'
 
 import api from '../../utils/axios.config'
-import {TError, TLoginDto, TTokenRes} from '../types'
-import {AppDispatch} from '../store'
 import {setError} from '../app/app.slice'
+import {AppDispatch, RootState} from '../store'
+import {TError, TLoginDto, TProfileRes, TTokenRes} from '../types'
 
 export const login = createAsyncThunk<
 	string,
@@ -15,6 +15,24 @@ export const login = createAsyncThunk<
 		await api
 			.post<TTokenRes>('/auth/signIn', dto)
 			.then(({data}) => data.access_token)
+			.catch(e => {
+				dispatch(setError(e))
+				return rejectWithValue(e)
+			})
+)
+
+export const getProfile = createAsyncThunk<
+	string,
+	undefined,
+	{rejectValue: TError; dispatch: AppDispatch; state: RootState}
+>(
+	'user/getProfile',
+	async (_, {dispatch, rejectWithValue, getState}) =>
+		await api
+			.get<TProfileRes>('/auth/profile', {
+				headers: {Authorization: 'Bearer ' + getState().user.token}
+			})
+			.then(({data}) => data.email)
 			.catch(e => {
 				dispatch(setError(e))
 				return rejectWithValue(e)

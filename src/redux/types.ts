@@ -11,3 +11,28 @@ export type TError = {
 	statusCode: number
 	message: string
 }
+
+export type TProfileRes = {
+	_id: string
+	email: string
+	iat: number
+	exp: number
+}
+
+export type TCreatePMDto = {
+	name: string
+	balance: number
+}
+
+export type TPaymentMethod = {
+	balance: number
+	createdAt: number
+	name: string
+	owner: TOwner
+	_id: string
+}
+
+export type TOwner = {
+	_id: string
+	email: string
+}
