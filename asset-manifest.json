@@ -1,14 +1,14 @@
 {
   "files": {
     "main.css": "/moneycounter/static/css/main.a240c550.css",
-    "main.js": "/moneycounter/static/js/main.7939d60a.js",
+    "main.js": "/moneycounter/static/js/main.3c293769.js",
     "static/media/coins.png": "/moneycounter/static/media/coins.11b3308ee3287461274e.png",
     "index.html": "/moneycounter/index.html",
     "main.a240c550.css.map": "/moneycounter/static/css/main.a240c550.css.map",
-    "main.7939d60a.js.map": "/moneycounter/static/js/main.7939d60a.js.map"
+    "main.3c293769.js.map": "/moneycounter/static/js/main.3c293769.js.map"
   },
   "entrypoints": [
     "static/css/main.a240c550.css",
-    "static/js/main.7939d60a.js"
+    "static/js/main.3c293769.js"
   ]
 }
