@@ -1,28 +1,28 @@
-import {Backdrop, Button, CircularProgress, TextField} from '@mui/material'
-import {CSSProperties, useState} from 'react'
+import {Button, TextField} from '@mui/material'
+import {CSSProperties, useEffect, useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 
+import AppLoader from '../components/appLoader'
 import MainContainer from '../components/mainContainer'
 import {useAppDispatch, useAppSelector} from '../redux/hooks'
 import {login} from '../redux/user/user.thunk'
-import {appColors} from '../utils/app.constants'
 
 const LoginPage = () => {
 	const dispatch = useAppDispatch()
-	const {loading} = useAppSelector(state => state.user)
+	const navigate = useNavigate()
+	const {loading, token} = useAppSelector(state => state.user)
 	const [email, setEmail] = useState('')
 	const [password, setPassword] = useState('')
 	const handleLogin = () => {
 		dispatch(login({email, password}))
 	}
+	useEffect(() => {
+		token && navigate('/paymentMethods')
+	}, [token])
 	return (
 		<MainContainer>
 			<div style={styles.container}>
-				<Backdrop
-					sx={{color: appColors.main, zIndex: theme => theme.zIndex.drawer + 1}}
-					open={loading}
-				>
-					<CircularProgress color='inherit' />
-				</Backdrop>
+				<AppLoader loading={loading} />
 				<TextField
 					fullWidth
 					label={'E-Mail'}

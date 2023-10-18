@@ -1,15 +1,16 @@
 import {configureStore} from '@reduxjs/toolkit'
-import {AnyAction, CombinedState, combineReducers} from 'redux'
+import {combineReducers} from 'redux'
 import {persistReducer, persistStore} from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
-import thunk, {ThunkDispatch} from 'redux-thunk'
 
 import app from './app/app.slice'
 import user from './user/user.slice'
+import payments from './paymentMethods/paymentMethod.slice'
 
 const reducers = combineReducers({
 	app,
-	user
+	user,
+	payments
 })
 
 const persistConfig = {
@@ -21,11 +22,11 @@ const persistedReducer = persistReducer(persistConfig, reducers)
 
 const store = configureStore({
 	reducer: persistedReducer,
-	middleware: [thunk]
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware({serializableCheck: false})
 })
 
 export type RootState = ReturnType<typeof store.getState>
-// export type AppDispatch = typeof store.dispatch
-export type AppDispatch = ThunkDispatch<CombinedState<{}>, null, AnyAction>
+export type AppDispatch = typeof store.dispatch
 export const persistor = persistStore(store)
 export default store
