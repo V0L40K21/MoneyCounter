@@ -24,9 +24,22 @@ export type TCreatePMDto = {
 	balance: number
 }
 
+export type TCreateCategoryDto = {
+	name: string
+}
+
 export type TPaymentMethod = {
 	balance: number
 	createdAt: number
+	updatedAt?: number
+	name: string
+	owner: TOwner
+	_id: string
+}
+
+export type TCategory = {
+	createdAt: number
+	updatedAt?: number
 	name: string
 	owner: TOwner
 	_id: string

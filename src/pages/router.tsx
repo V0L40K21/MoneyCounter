@@ -2,6 +2,7 @@ import {BrowserRouter, Route, Routes} from 'react-router-dom'
 
 import LoginPage from './login'
 import PaymentMethodsPage from './paymentMethods'
+import CategoriesPage from './categories'
 
 const MainRouter = () => (
 	<BrowserRouter basename={'/moneycounter'}>
@@ -14,6 +15,10 @@ const MainRouter = () => (
 			<Route
 				path={'/paymentMethods'}
 				element={<PaymentMethodsPage />}
+			/>
+			<Route
+				path={'/categories'}
+				element={<CategoriesPage />}
 			/>
 		</Routes>
 	</BrowserRouter>
