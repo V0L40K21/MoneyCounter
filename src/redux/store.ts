@@ -6,11 +6,13 @@ import storage from 'redux-persist/lib/storage'
 import app from './app/app.slice'
 import user from './user/user.slice'
 import payments from './paymentMethods/paymentMethod.slice'
+import categories from './categories/category.slice'
 
 const reducers = combineReducers({
 	app,
 	user,
-	payments
+	payments,
+	categories
 })
 
 const persistConfig = {
