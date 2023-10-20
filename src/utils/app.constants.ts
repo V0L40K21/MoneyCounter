@@ -13,5 +13,19 @@ export const appTheme = createTheme({
 		secondary: {
 			main: appColors.second
 		}
+	},
+	components: {
+		MuiButton: {
+			styleOverrides: {
+				root: {
+					height: '40px'
+				}
+			}
+		},
+		MuiInputBase: {
+			defaultProps: {
+				size: 'small'
+			}
+		}
 	}
 })

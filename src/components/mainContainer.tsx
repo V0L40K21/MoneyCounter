@@ -1,4 +1,4 @@
-import {Alert, Snackbar} from '@mui/material'
+import {Alert, Container, Snackbar} from '@mui/material'
 import {CSSProperties, FC, ReactElement, useEffect, useState} from 'react'
 import {useNavigate} from 'react-router-dom'
 
@@ -38,7 +38,14 @@ const MainContainer: FC<TProps> = ({children}) => {
 	return (
 		<div style={styles.container}>
 			{token && <MainMenu />}
-			{children}
+			<Container
+				style={{
+					height: '100%',
+					overflow: 'hidden'
+				}}
+			>
+				{children}
+			</Container>
 			<img
 				src={require('../assets/coins.png')}
 				alt={'coins'}
@@ -77,7 +84,8 @@ const styles: {[key: string]: CSSProperties} = {
 		bottom: 0,
 		right: 0,
 		height: '45vh',
-		width: '45vw'
+		width: '45vw',
+		zIndex: -5
 	}
 }
 

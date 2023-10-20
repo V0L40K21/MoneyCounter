@@ -1,6 +1,6 @@
 import {AnyAction, createSlice} from '@reduxjs/toolkit'
 
-import {getProfile, login} from './user.thunk'
+import {getProfile, login, register} from './user.thunk'
 
 interface IUserState {
 	token: string
@@ -25,6 +25,11 @@ const userSlice = createSlice({
 	},
 	extraReducers: builder => {
 		builder
+			.addCase(register.fulfilled, (state, action) => ({
+				...state,
+				token: action.payload,
+				loading: false
+			}))
 			.addCase(login.fulfilled, (state, action) => ({
 				...state,
 				token: action.payload,

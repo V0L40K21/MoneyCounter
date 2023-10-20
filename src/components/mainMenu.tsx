@@ -17,6 +17,10 @@ import {useNavigate} from 'react-router-dom'
 
 import {useAppDispatch, useAppSelector} from '../redux/hooks'
 import {getProfile} from '../redux/user/user.thunk'
+import {clearUserState} from '../redux/user/user.slice'
+import {clearPMState} from '../redux/paymentMethods/paymentMethod.slice'
+import {clearCategoryState} from '../redux/categories/category.slice'
+import {clearPurchaseState} from '../redux/purchases/purchase.slice'
 
 type TProps = {}
 
@@ -42,6 +46,14 @@ const MainMenu: FC<TProps> = () => {
 	}
 	const handleCloseUserMenu = () => {
 		setAnchorElUser(null)
+	}
+	const handleLogOut = () => {
+		setAnchorElUser(null)
+		dispatch(clearUserState())
+		dispatch(clearPMState())
+		dispatch(clearCategoryState())
+		dispatch(clearPurchaseState())
+		navigate('/')
 	}
 	useEffect(() => {
 		!email && dispatch(getProfile())
@@ -166,12 +178,7 @@ const MainMenu: FC<TProps> = () => {
 							open={Boolean(anchorElUser)}
 							onClose={handleCloseUserMenu}
 						>
-							<MenuItem
-								onClick={() => {
-									setAnchorElUser(null)
-									navigate('/')
-								}}
-							>
+							<MenuItem onClick={handleLogOut}>
 								<Typography textAlign='center'>Выйти</Typography>
 							</MenuItem>
 						</Menu>

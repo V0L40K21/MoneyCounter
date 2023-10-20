@@ -16,10 +16,10 @@ import {createPaymentMethod} from '../../../redux/paymentMethods/paymentMethod.t
 type TProps = {
 	name: string
 	open: boolean
-	balance: number
+	balance: string
 	closeDialog: () => void
 	setName: Dispatch<SetStateAction<string>>
-	setBalance: Dispatch<SetStateAction<number>>
+	setBalance: Dispatch<SetStateAction<string>>
 }
 
 const AddPaymentMethodDialog: FC<TProps> = ({
@@ -33,7 +33,7 @@ const AddPaymentMethodDialog: FC<TProps> = ({
 	const dispatch = useAppDispatch()
 	const {loading} = useAppSelector(state => state.payments)
 	const handleSave = async () => {
-		await dispatch(createPaymentMethod({name, balance}))
+		await dispatch(createPaymentMethod({name, balance: +balance}))
 		closeDialog()
 	}
 	return (
@@ -60,11 +60,11 @@ const AddPaymentMethodDialog: FC<TProps> = ({
 				/>
 				<TextField
 					label={'Баланс'}
-					type={'number'}
+					inputMode={'numeric'}
 					fullWidth
 					variant={'standard'}
 					value={balance}
-					onChange={({target}) => setBalance(+target.value)}
+					onChange={({target}) => setBalance(target.value)}
 					sx={styles.input}
 				/>
 			</DialogContent>

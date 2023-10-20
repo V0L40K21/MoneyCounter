@@ -49,3 +49,23 @@ export type TOwner = {
 	_id: string
 	email: string
 }
+
+export type TPurchase = {
+	_id: string
+	amount: number
+	owner: TLoginDto
+	paymentMethod: TPaymentMethod
+	category: TCategory
+	inOut: 'inc' | 'dec'
+	createdAt: number
+	updatedAt?: number
+}
+
+export type TTimeRanges = 'today' | 'week' | 'month' | '3month'
+
+export type TAddPurchaseDto = {
+	amount: number
+	category: string
+	paymentMethod: string
+	inOut: string
+}
