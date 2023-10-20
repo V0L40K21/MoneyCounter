@@ -7,12 +7,14 @@ import app from './app/app.slice'
 import user from './user/user.slice'
 import payments from './paymentMethods/paymentMethod.slice'
 import categories from './categories/category.slice'
+import purchases from './purchases/purchase.slice'
 
 const reducers = combineReducers({
 	app,
 	user,
 	payments,
-	categories
+	categories,
+	purchases
 })
 
 const persistConfig = {

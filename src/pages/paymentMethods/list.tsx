@@ -3,8 +3,8 @@ import {IconButton, Typography} from '@mui/material'
 import {CSSProperties, FC, useState} from 'react'
 
 import {TPaymentMethod} from '../../redux/types'
-import DeletePaymentMethodDialog from './dialogs/delete'
 import {appColors} from '../../utils/app.constants'
+import DeletePaymentMethodDialog from './dialogs/delete'
 import EditPaymentMethodDialog from './dialogs/edit'
 
 type TProps = {

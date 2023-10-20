@@ -15,10 +15,10 @@ const PaymentMethodsPage: FC<TProps> = () => {
 	const {loading, paymentMethods} = useAppSelector(state => state.payments)
 	const [addOpen, setAddOpen] = useState(false)
 	const [name, setName] = useState('')
-	const [balance, setBalance] = useState(0)
+	const [balance, setBalance] = useState('')
 	const closeDialog = () => {
 		setName('')
-		setBalance(0)
+		setBalance('')
 		setAddOpen(false)
 	}
 	useEffect(() => {

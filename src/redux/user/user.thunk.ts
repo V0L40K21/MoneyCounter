@@ -5,6 +5,22 @@ import {setError} from '../app/app.slice'
 import {AppDispatch, RootState} from '../store'
 import {TError, TLoginDto, TProfileRes, TTokenRes} from '../types'
 
+export const register = createAsyncThunk<
+	string,
+	TLoginDto,
+	{rejectValue: TError; dispatch: AppDispatch}
+>(
+	'user/register',
+	async (dto, {dispatch, rejectWithValue}) =>
+		await api
+			.post<TTokenRes>('/user', dto)
+			.then(({data}) => data.access_token)
+			.catch(e => {
+				dispatch(setError(e))
+				return rejectWithValue(e)
+			})
+)
+
 export const login = createAsyncThunk<
 	string,
 	TLoginDto,
