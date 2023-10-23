@@ -63,10 +63,10 @@ const AddPurchaseDialog: FC<TProps> = ({open, closeDialog, inOut}) => {
 			onClose={closeDialog}
 		>
 			<AppLoader loading={loading} />
-			<DialogTitle>Добавление категории</DialogTitle>
+			<DialogTitle>Добавление транзакции</DialogTitle>
 			<DialogContent>
 				<DialogContentText>
-					Для того, чтобы добавить категорию, заполните поля и нажмите кнопку
+					Для того, чтобы добавить транзакцию, заполните поля и нажмите кнопку
 					"Добавить"
 				</DialogContentText>
 				<FormControl

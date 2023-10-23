@@ -33,7 +33,9 @@ const AddPaymentMethodDialog: FC<TProps> = ({
 	const dispatch = useAppDispatch()
 	const {loading} = useAppSelector(state => state.payments)
 	const handleSave = async () => {
-		await dispatch(createPaymentMethod({name, balance: +balance}))
+		if (name && +balance) {
+			await dispatch(createPaymentMethod({name, balance: +balance}))
+		}
 		closeDialog()
 	}
 	return (

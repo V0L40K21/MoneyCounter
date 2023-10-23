@@ -35,7 +35,8 @@ const DeleteCategoryDialog: FC<TProps> = ({open, closeDialog, category}) => {
 			<DialogTitle>Удаление категории</DialogTitle>
 			<DialogContent>
 				<DialogContentText>
-					Вы уверены, что хотите удалить категорию "{category.name}"?
+					Удаление категории повлечет за собой удаление связанных транзакций. Вы
+					уверены, что хотите удалить категорию "{category.name}"?
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>

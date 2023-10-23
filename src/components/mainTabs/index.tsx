@@ -1,6 +1,7 @@
 import {List, Tab, Tabs} from '@mui/material'
 import {FC, SyntheticEvent, useState} from 'react'
 
+import MainDiagramsPage from '../../pages/main/diagrams'
 import PurchasesList from '../../pages/main/purchasesList'
 import {TPurchase} from '../../redux/types'
 import TabPanel from './tabPanel'
@@ -38,29 +39,35 @@ const MainTabs: FC<TProps> = ({increments, decrements}) => {
 					label={'Пополнения'}
 					{...a11yProps(1)}
 				/>
+				<Tab
+					label={'Графики'}
+					{...a11yProps(2)}
+				/>
 			</Tabs>
 			<List>
 				<TabPanel
 					value={value}
 					index={0}
 				>
-					<div>
-						<PurchasesList
-							purchases={decrements}
-							inOut={'dec'}
-						/>
-					</div>
+					<PurchasesList
+						purchases={decrements}
+						inOut={'dec'}
+					/>
 				</TabPanel>
 				<TabPanel
 					value={value}
 					index={1}
 				>
-					<div>
-						<PurchasesList
-							purchases={increments}
-							inOut={'inc'}
-						/>
-					</div>
+					<PurchasesList
+						purchases={increments}
+						inOut={'inc'}
+					/>
+				</TabPanel>
+				<TabPanel
+					value={value}
+					index={2}
+				>
+					<MainDiagramsPage />
 				</TabPanel>
 			</List>
 		</div>
