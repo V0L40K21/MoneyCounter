@@ -2,7 +2,7 @@ import axios, {AxiosError} from 'axios'
 
 const api = axios.create({
 	baseURL: 'https://moneycounter35.vercel.app'
-	// baseURL: 'http://localhost:3000',
+	// baseURL: 'http://localhost:3000'
 })
 
 api.interceptors.request.use(req => {
