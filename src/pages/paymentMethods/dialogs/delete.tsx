@@ -35,7 +35,8 @@ const DeletePaymentMethodDialog: FC<TProps> = ({open, closeDialog, method}) => {
 			<DialogTitle>Удаление метода платежей</DialogTitle>
 			<DialogContent>
 				<DialogContentText>
-					Вы уверены, что хотите удалить метод платежей "{method.name}"?
+					Удаление метода плтежей повлечет за собой удаление связанных транзакций.Вы
+					уверены, что хотите удалить метод платежей "{method.name}"?
 				</DialogContentText>
 			</DialogContent>
 			<DialogActions>
